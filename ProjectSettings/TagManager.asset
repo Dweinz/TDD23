@@ -6,6 +6,7 @@ TagManager:
   tags:
   - buildings
   - enviroment
+  - Canvas
   layers:
   - Default
   - TransparentFX

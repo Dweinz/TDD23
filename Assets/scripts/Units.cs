@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Units : MonoBehaviour {
     private bool targeted;
     public float speed = 1;
     private Vector2 target;
+    public string myName;
     // Use this for initialization
 	void Start () {
         targeted = false;
+        myName = "worker";
         target = this.transform.position;
 	}
 	
@@ -33,4 +36,5 @@ public class Units : MonoBehaviour {
     {
         this.transform.position = Vector2.MoveTowards(this.transform.position, target, step);
     }
+   
 }
