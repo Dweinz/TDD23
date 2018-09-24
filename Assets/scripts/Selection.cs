@@ -51,7 +51,7 @@ public class Selection : MonoBehaviour {
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            selectedObjects.Clear();
+            
 
             Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
@@ -67,8 +67,8 @@ public class Selection : MonoBehaviour {
                 m_camera.GetComponent<panelScript>().setName(Units.myName);
                 selectedObjects.Add(hit.transform.gameObject);
             }
-            else
-                m_camera.GetComponent<panelScript>().HidePanel();
+           /* else
+                m_camera.GetComponent<panelScript>().HidePanel();*/
 
 
         }
