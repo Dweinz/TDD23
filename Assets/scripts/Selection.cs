@@ -120,7 +120,7 @@ public class Selection : MonoBehaviour {
     {
         width /= 2;
         height /= 2;
-        if((center.x - width) < 0 || (center.y - height) < 0 || center.x + width >=  GridClass.me. )
+       // if((center.x - width) < 0 || (center.y - height) < 0 || center.x + width >=  GridClass.me. )
 
     }
        
