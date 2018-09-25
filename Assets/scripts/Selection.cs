@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class Selection : MonoBehaviour {
     [SerializeField]
-    private LayerMask clickable;
     Camera m_camera;
     panelScript panelScript;
+
+    public enum SelectingModes
+    {
+        units,
+        buildings,
+        createbuildings
+    }
+
+    public SelectingModes selectMode;
+    public static Selection me;
     private List<GameObject> selectedObjects;
     private Transform target;
     private Vector2 vec3;
-    public float speed = 4;
     private Units Units;
+    RaycastHit2D hit;
+
+
     // Use this for initialization
     void Start () {
         selectedObjects = new List<GameObject>();
         Units = GetComponent<Units>();
+        me = this;
         m_camera = Camera.main;
         panelScript = GetComponent<panelScript>();
 
@@ -24,8 +36,8 @@ public class Selection : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+       
         Debug.Log(selectedObjects.Count);
-        float step = speed * Time.deltaTime;
         if (Input.GetKey(KeyCode.LeftAlt) && Input.GetMouseButtonDown(0))
         {
             Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
@@ -56,7 +68,7 @@ public class Selection : MonoBehaviour {
             Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
+            hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
             if (hit)
             {
 
@@ -82,14 +94,37 @@ public class Selection : MonoBehaviour {
 
             }
         }
+
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void getTilesFromCoords(int width, int height)
     {
-        if(collision.tag == "Canvas")
+        width += 2;
+        height += 2;
+        GameObject tileAtMouse = null;
+
+        Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+                                     Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+
+        hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
+        if (hit)
         {
-            m_camera.GetComponent<panelScript>().ShowPanel();
+            tileAtMouse = hit.transform.gameObject;
         }
+        TileMaster tm = tileAtMouse.GetComponent<TileMaster>();
+        Vector2 tileGridCoords = tm.getGridCoords();
+
+        if ()
     }
-}
+
+    void isSelectionInRange(Vector2 center, int width, int height)
+    {
+        width /= 2;
+        height /= 2;
+        if((center.x - width) < 0 || (center.y - height) < 0 || center.x + width >=  GridClass.me. )
+
+    }
+       
+
+ }
   
 
