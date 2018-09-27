@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4908795762739218}
   - component: {fileID: 61091966642047052}
   - component: {fileID: 114615796042392978}
+  - component: {fileID: 114570852002412130}
+  - component: {fileID: 212125308949815580}
   m_Layer: 8
   m_Name: building
   m_TagString: buildings
@@ -96,6 +98,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114570852002412130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005157607006540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dc852b1bf243641a07e49e2db23ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  myName: 
 --- !u!114 &114615796042392978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,10 +122,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5caa7c9d6e6fe4b883ee8a2216bfce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickable:
-    serializedVersion: 2
-    m_Bits: 256
-  speed: 4
+  m_camera: {fileID: 0}
+  selectMode: 0
+--- !u!212 &212125308949815580
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005157607006540}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1690225477
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
 --- !u!212 &212592164950299938
 SpriteRenderer:
   m_ObjectHideFlags: 1

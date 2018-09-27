@@ -6,6 +6,7 @@ public class Selection : MonoBehaviour {
     [SerializeField]
     Camera m_camera;
     panelScript panelScript;
+    int mask;
 
     public enum SelectingModes
     {
@@ -30,6 +31,8 @@ public class Selection : MonoBehaviour {
         me = this;
         m_camera = Camera.main;
         panelScript = GetComponent<panelScript>();
+        mask  = 1024;
+        
 
     }
 
@@ -43,8 +46,8 @@ public class Selection : MonoBehaviour {
             Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
-            if (hit)
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.zero, 0f, mask);
+            if (hit && hit.transform.gameObject.tag == "Units")
             {
                 print(hit.transform.gameObject.tag);
                 //vec3 = hit.transform.position;
@@ -68,16 +71,20 @@ public class Selection : MonoBehaviour {
             Vector2 origin = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                                          Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 
-            hit = Physics2D.Raycast(origin, Vector2.zero, 0f);
+            hit = Physics2D.Raycast(origin, Vector2.zero, 0f, mask);
             if (hit)
             {
+                print(hit.transform.gameObject.tag);
+                if (hit.transform.gameObject.tag == "Units")
+                {
+                    m_camera.GetComponent<panelScript>().ShowPanel();
+                    selectedObjects.Clear();
+                    Units = hit.transform.GetComponent<Units>();
+                    Units.setTargeted();
+                    m_camera.GetComponent<panelScript>().setName(Units.myName);
+                    selectedObjects.Add(hit.transform.gameObject);
 
-                m_camera.GetComponent<panelScript>().ShowPanel();
-
-                Units = hit.transform.GetComponent<Units>();
-                Units.setTargeted();
-                m_camera.GetComponent<panelScript>().setName(Units.myName);
-                selectedObjects.Add(hit.transform.gameObject);
+                }
             }
            /* else
                 m_camera.GetComponent<panelScript>().HidePanel();*/
@@ -113,14 +120,25 @@ public class Selection : MonoBehaviour {
         TileMaster tm = tileAtMouse.GetComponent<TileMaster>();
         Vector2 tileGridCoords = tm.getGridCoords();
 
-        if ()
+        if (!isSelectionInRange(tileGridCoords, width, height) == true)
+        {
+            Vector2 startPos = new Vector2(tileGridCoords.x - (width / 2), tileGridCoords.y - (height / 2));
+            Vector2 endPos = new Vector2(tileGridCoords.x + (width / 2), tileGridCoords.y + (height / 2));
+            
+        }
+
     }
 
-    void isSelectionInRange(Vector2 center, int width, int height)
+    bool isSelectionInRange(Vector2 center, int width, int height)
     {
         width /= 2;
         height /= 2;
-       // if((center.x - width) < 0 || (center.y - height) < 0 || center.x + width >=  GridClass.me. )
+        if ((center.x - width) < 0 || (center.y - height) < 0)
+        {
+            return false;
+        }
+        else
+            return true;
 
     }
        
