@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114615796042392978}
   - component: {fileID: 114570852002412130}
   - component: {fileID: 212125308949815580}
+  - component: {fileID: 114724735802643752}
   m_Layer: 8
   m_Name: building
   m_TagString: buildings
@@ -123,7 +124,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
+  buildingCursor: {fileID: 0}
   selectMode: 0
+--- !u!114 &114724735802643752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005157607006540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce882c2ad45fe34c9315ceb7e5d136b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthInTiles: 2
+  heightInTiles: 2
+  nameOf: Barracks
+  buildingSprite: {fileID: 21300000, guid: e1d2469066a5c3641a50412cc185ec40, type: 3}
 --- !u!212 &212125308949815580
 SpriteRenderer:
   m_ObjectHideFlags: 1

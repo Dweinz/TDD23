@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TileMaster : MonoBehaviour {
     float gridX, gridY;
+    public bool walkAble;
 
 	// Use this for initialization
 	void Start () {
-		
+        walkAble = true;
 	}
 	
 	// Update is called once per frame
@@ -27,5 +28,13 @@ public class TileMaster : MonoBehaviour {
     {
         gridX = coords.x;
         gridY = coords.y;
+    }
+    public void setWalkAble(bool walk)
+    {
+        walkAble = walk;
+    }
+    public bool isTileWalkAble()
+    {
+        return walkAble;
     }
 }

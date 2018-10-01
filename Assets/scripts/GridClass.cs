@@ -36,14 +36,58 @@ public class GridClass : MonoBehaviour {
         {
             for(int y = 0; y < GridDimension.y; y++)
             {
-                Vector3 posToCreatetile = new Vector3(x-12, y-8, 0);
+                Vector3 posToCreatetile = new Vector3(x, y, 0);
                 GameObject recentTile = (GameObject)Instantiate(prefabTile1, posToCreatetile, Quaternion.Euler(0, 0, 0));
-                recentTile.GetComponent<TileMaster>().setGridCoords(new Vector2(x-12, y-8));
+                recentTile.GetComponent<TileMaster>().setGridCoords(new Vector2(x, y));
                 recentTile.transform.parent = this.gameObject.transform;
                 TilesGrid[x, y] = recentTile.GetComponent<TileGrass>();
 
             }
         }
+    }
+    public List<GameObject> getTiles(Vector2 startPos, Vector2 endPos)
+    {
+        
+        int highy, highx, lowy, lowx;
+        List<GameObject> retList = new List<GameObject>();
+        Debug.Log("start : X coord: " + startPos.x + "start : Y coord:" + startPos.y);
+        Debug.Log("end : X coord: " + endPos.x + " end : Y coord:" + endPos.y);
+        if (startPos.x <= endPos.x)
+        {
+            lowx = (int)startPos.x;
+            highx = (int)endPos.x;
+        }
+        else
+        {
+            lowx = (int)endPos.x;
+            highx = (int)startPos.x;
+        }
+        if(startPos.y <= endPos.y)
+        {
+            lowy = (int)startPos.y;
+            highy = (int)endPos.y;
+        }
+        else
+        {
+            lowy = (int)endPos.y;
+            highy = (int)startPos.y;
+        }
+
+        for(int x = (int)lowx; x <= (int)highx; x++ )
+        {
+            for (int y = (int)lowy; y <= (int)highy; y++)
+            {
+               
+                retList.Add(TilesGrid[x, y].gameObject);
+            }
+
+
+        }
+        return retList;
+
+
+
+
     }
    
 }
